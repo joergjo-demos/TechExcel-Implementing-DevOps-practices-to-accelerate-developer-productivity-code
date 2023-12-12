@@ -1,6 +1,14 @@
 name: Bicep deployment
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: Choose the target environment
+        options:
+          - dev
+          - test
+          - prod
 
 env:
   environment: dev
@@ -23,4 +31,4 @@ jobs:
           resourceGroupName: ${{ secrets.AZURE_RG }}
           scope: resourcegroup
           template: ./InfrastructureAsCode/main.bicep
-          parameters: environment=${{ env.environment }}
+          parameters: environment=${{ github.event.inputs.environment }}
