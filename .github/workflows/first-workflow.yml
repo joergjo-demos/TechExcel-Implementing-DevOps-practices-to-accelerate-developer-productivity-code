@@ -11,4 +11,11 @@ jobs:
         run: echo “Step 1 complete!” 
       - name: Second Echo
         run: echo "Step 2 complete!"
-      
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cowssays
+        uses: mscoutermarsh/cowsays-action@v1
+        with:
+          text: Ready for prod–ship it!
+          color: magenta      
