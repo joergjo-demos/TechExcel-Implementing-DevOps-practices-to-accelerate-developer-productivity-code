@@ -1,0 +1,26 @@
+name: Bicep deployment
+on:
+  workflow_dispatch:
+
+env:
+  environment: dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v3
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Deploy Bicep template
+        uses: azure/arm-deploy@v1
+        with:
+          deploymentName: mpp-${{ github.run_number }}-${{ github.run_attempt }}
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          resourceGroupName: ${{ secrets.AZURE_RG }}
+          scope: resourcegroup
+          template: ./InfrastructureAsCode/main.bicep
+          parameters: environment=${{ env.environment }}
