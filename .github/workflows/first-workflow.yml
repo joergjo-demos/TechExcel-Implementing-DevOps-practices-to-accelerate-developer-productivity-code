@@ -18,4 +18,5 @@ jobs:
         uses: mscoutermarsh/cowsays-action@v1
         with:
           text: Ready for prod–ship it!
-          color: magenta      
+          color: magenta
+    needs: job1 
