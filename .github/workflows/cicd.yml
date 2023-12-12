@@ -7,7 +7,7 @@ env:
   registryName: 'v6ppu6urmilhmmpnpreg.azurecr.io'
   repositoryName: 'techboost/dotnetcoreapp'
   dockerFolderPath: 'Application/src/RazorPagesTestSample'
-  tag: ${{ github.sha }}
+  tag: ${{ github.run_number }}
 
 on:
   push:
