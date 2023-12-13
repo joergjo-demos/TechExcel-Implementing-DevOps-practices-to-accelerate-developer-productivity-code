@@ -60,7 +60,7 @@ jobs:
     needs: dockerBuildPush
     environment:
       name: dev
-      url: $prefix-dev.azurewebsites.net/
+      url: https://$prefix-dev.azurewebsites.net/
     steps:
       - name: Login via Azure CLI
         uses: azure/login@v1
