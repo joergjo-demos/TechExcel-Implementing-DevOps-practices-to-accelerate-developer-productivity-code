@@ -4,7 +4,7 @@
 name: Build container and deploy image
 
 env:
-  registryName: 'v6ppu6urmilhmmpnpreg.azurecr.io'
+  registryName: 'v6ppu6urmilhmmpnpreg'
   repositoryName: 'techboost/dotnetcoreapp'
   dockerFolderPath: 'Application/src/RazorPagesTestSample'
   tag: ${{ github.run_number }}
