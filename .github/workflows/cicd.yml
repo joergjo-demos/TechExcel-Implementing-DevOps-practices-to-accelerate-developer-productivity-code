@@ -57,7 +57,7 @@ jobs:
     needs: dockerBuildPush
     environment:
       name: dev
-      url: https://$prefix-dev.azurewebsites.net/
+      url: https://v6ppu6urmilhm-dev.azurewebsites.net/
     steps:
       - name: Login via Azure CLI
         uses: azure/login@v1
@@ -67,7 +67,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: v6ppu6urmilhm-dev
-          images: $registryName.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
+          images: ${{ env.registryName }}.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
 
   deploy-test:
     runs-on: ubuntu-latest
@@ -85,7 +85,7 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: v6ppu6urmilhm-test
-        images: $registryName.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
+        images: ${{ env.registryName }}.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
 
   deploy-prod:
     runs-on: ubuntu-latest
@@ -103,4 +103,4 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: v6ppu6urmilhm-prod
-        images: $registryName.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
+        images: ${{ env.registryName }}.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
