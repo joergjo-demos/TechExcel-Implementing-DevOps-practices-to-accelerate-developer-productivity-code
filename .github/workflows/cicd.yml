@@ -4,7 +4,7 @@
 name: Build container and deploy image
 
 env:
-  registryName: 'v6ppu6urmilhmmpnpreg'
+  registryName: 'v6ppu6urmilhmmpnpreg.azurecr.io'
   repositoryName: 'techboost/dotnetcoreapp'
   dockerFolderPath: 'Application/src/RazorPagesTestSample'
   tag: ${{ github.run_number }}
@@ -67,7 +67,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: v6ppu6urmilhm-dev
-          images: ${{ env.registryName }}.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
+          images: ${{ env.registryName }}/techboost/dotnetcoreapp:${{ github.run_number }}
 
   deploy-test:
     runs-on: ubuntu-latest
@@ -85,7 +85,7 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: v6ppu6urmilhm-test
-        images: ${{ env.registryName }}.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
+        images: ${{ env.registryName }}/techboost/dotnetcoreapp:${{ github.run_number }}
 
   deploy-prod:
     runs-on: ubuntu-latest
@@ -103,4 +103,4 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: v6ppu6urmilhm-prod
-        images: ${{ env.registryName }}.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
+        images: ${{ env.registryName }}/techboost/dotnetcoreapp:${{ github.run_number }}
