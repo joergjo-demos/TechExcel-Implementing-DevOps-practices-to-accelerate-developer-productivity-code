@@ -8,7 +8,6 @@ env:
   repositoryName: 'techboost/dotnetcoreapp'
   dockerFolderPath: 'Application/src/RazorPagesTestSample'
   tag: ${{ github.run_number }}
-  prefix: 'v6ppu6urmilhm'
 
 on:
   push:
@@ -67,7 +66,7 @@ jobs:
       - name: Deploy container image to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: $prefix-dev
+          app-name: v6ppu6urmilhm-dev
           images: $registryName.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
 
   deploy-test:
@@ -75,7 +74,7 @@ jobs:
     needs: deploy-dev
     environment:
       name: test
-      url: https://$prefix-test.azurewebsites.net/
+      url: https://v6ppu6urmilhm-test.azurewebsites.net/
     steps:
     - uses: actions/checkout@v3
     - name: Login via Azure CLI
@@ -85,7 +84,7 @@ jobs:
     - name: Deploy container image to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: $prefix-test
+        app-name: v6ppu6urmilhm-test
         images: $registryName.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
 
   deploy-prod:
@@ -93,7 +92,7 @@ jobs:
     needs: deploy-test
     environment:
       name: prod
-      url: https://$prefix-prod.azurewebsites.net/
+      url: https://v6ppu6urmilhm-prod.azurewebsites.net/
     steps:
     - uses: actions/checkout@v3
     - name: Login via Azure CLI
@@ -103,5 +102,5 @@ jobs:
     - name: Deploy container image to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: $prefix-prod
+        app-name: v6ppu6urmilhm-prod
         images: $registryName.azurecr.io/techboost/dotnetcoreapp:${{ github.run_number }}
